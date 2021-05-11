@@ -1,0 +1,41 @@
+server:
+  port: 8085
+  http2:
+    enabled: true
+spring:
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://127.0.0.1:5432/diplomaproject?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=GMT}
+    username: ${JDBC_DATABASE_USERNAME:postgres}
+    password: ${JDBC_DATABASE_PASSWORD:root}
+  flyway:
+    enabled: true
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: validate
+doc:
+  report:
+    pathToReportTemplate: src/main/resources/static/docx_templates/template_report.docx
+    placeholderRegexp: \{\{([a-zA-z0-9]+)}}
+    placeholderColor: 7030A0
+
+  scoreList:
+    pathToScoreListTemplate: src/main/resources/static/docx_templates/template_score_list.docx
+    placeholderRegexp: \{\{(.+?)}}
+
+  func:
+    argsSeparator: \,
+    tableFiledSeparator: \.
+    sum:
+      validateRegexp: sum\([A-Za-z0-9,.]+\)
+      prefix: sum
+    isSmth:
+      validateRegexp: issmth\([A-Za-z0-9,.]+\)
+      prefix: issmth
+
+jwt:
+  AuthorizationHeaderName: Authorization
+  token:
+    secret: nEx_;d2tx{u/z6uUozr?**@sl-|d9_
+    expDay: 3
