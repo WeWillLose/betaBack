@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.poi.xwpf.usermodel.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Service;
 
@@ -40,11 +41,11 @@ public class DefaultDocxServiceImpl implements ScoreListDocxService {
 
 
 
-    private InputStreamResource getInputStream(@NonNull  XWPFDocument docx) throws IOException {
+    private ByteArrayResource getInputStream(@NonNull  XWPFDocument docx) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         docx.write(byteArrayOutputStream);
         byteArrayOutputStream.flush();
-        return new InputStreamResource(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
+        return new ByteArrayResource(byteArrayOutputStream.toByteArray());
     }
 
     private void parsScoreListTemplate(@NonNull XWPFDocument docx,@NonNull  String REGEXP,@NonNull JsonNode reportData){
@@ -168,7 +169,7 @@ public class DefaultDocxServiceImpl implements ScoreListDocxService {
     }
 
     @Override
-    public InputStreamResource getScoreListInputStreamByReport(Report report)  {
+    public ByteArrayResource getScoreListInputStreamByReport(Report report)  {
         try (FileInputStream fos = new FileInputStream(pathToScoreListTemplate)) {
             XWPFDocument docx = new XWPFDocument(fos);
             parsScoreListTemplate(docx, REGEXP, report.getData());

@@ -12,6 +12,7 @@ import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.poi.xwpf.usermodel.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
 
 import java.io.ByteArrayInputStream;
@@ -86,17 +87,17 @@ public class ScoreListDocxServiceImpl implements ScoreListDocxService {
         XWPFDocxCommonService.replacePlaceholdersInParagraphsFromData(scoreListTemplate.getParagraphs(), data,regexp);
     }
 
-    private InputStreamResource getInputStreamFromDoc(@NonNull XWPFDocument docx) throws IOException {
+    private ByteArrayResource getInputStreamFromDoc(@NonNull XWPFDocument docx) throws IOException {
 
         try(ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()){
         docx.write(byteArrayOutputStream);
         byteArrayOutputStream.flush();
-        return new InputStreamResource(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
+        return new ByteArrayResource(byteArrayOutputStream.toByteArray());
         }
     }
 
     @Override
-    public InputStreamResource getScoreListInputStreamByReport(@NonNull Report report)  {
+    public ByteArrayResource getScoreListInputStreamByReport(@NonNull Report report)  {
         if(report.getData() == null){
             throw new NullPointerException("IN getScoreListInputStreamByReport report.data is null");
         }

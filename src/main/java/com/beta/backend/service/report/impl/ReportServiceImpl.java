@@ -137,7 +137,8 @@ public class ReportServiceImpl implements ReportService {
             throw new ReportNotFoundExceptionImpl(reportId);
         }
 
-        if (SecurityUtils.getCurrentUser() == null) throw new NullPointerException("IN updateReport currentUser is null");
+        if (SecurityUtils.getCurrentUser() == null)
+            throw new NullPointerException("IN updateReport currentUser is null");
 
         if ((SecurityUtils.hasCurrentUserThisRole(ROLES.CHAIRMAN)
                 && userService.isUserInChairmanGroup(report.getAuthor().getId(), SecurityUtils.getCurrentUser().getId()))
@@ -194,7 +195,7 @@ public class ReportServiceImpl implements ReportService {
                     throw new ForbiddenExceptionImpl();
             } else {
                 if (SecurityUtils.hasCurrentUserThisRole(ROLES.CHAIRMAN) &&
-                        userService.isUserInChairmanGroup(report.getAuthor().getId(), SecurityUtils.getCurrentUser().getId())
+                        userService.isUserInChairmanGroup(reportById.getAuthor().getId(), SecurityUtils.getCurrentUser().getId())
                         || SecurityUtils.isCurrentUserAdmin()) {
                     reportById.setData(report.getData());
                 } else
@@ -230,9 +231,15 @@ public class ReportServiceImpl implements ReportService {
         if (report == null) {
             throw new ReportNotFoundExceptionImpl(id);
         }
-        if (!securityUtils.isCurrentUserCanEditReportIfIsOwnerAndReportStatusUNCHECKEDOrIsOwnerChairmanOrAdmin(report)) {
+        if (SecurityUtils.getCurrentUser() == null)
+            throw new NullPointerException("IN deleteReport SecurityUtils.getCurrentUser() is null");
+        if (SecurityUtils.isCurrentUserAdmin()
+                || userService.isUserInChairmanGroup(report.getAuthor().getId(), SecurityUtils.getCurrentUser().getId())) {
+            reportRepo.delete(report);
+        } else {
             throw new ForbiddenExceptionImpl();
         }
-        reportRepo.delete(report);
+
+
     }
 }

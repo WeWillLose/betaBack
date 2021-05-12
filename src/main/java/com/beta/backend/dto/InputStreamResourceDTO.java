@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
 
 @Data
@@ -12,7 +13,7 @@ import org.springframework.core.io.InputStreamResource;
 @Builder
 public class InputStreamResourceDTO {
 
-    private InputStreamResource inputStreamResource;
+    private ByteArrayResource inputStreamResource;
 
     private String fileName;
 }

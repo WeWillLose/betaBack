@@ -107,8 +107,6 @@ public class ComputedValuesServiceImpl implements ComputedValuesService {
         if(data.get(0) == null || data.get(0).isEmpty()){
             return "-";
         }
-        if(data.get(0).get(0) == null || data.get(0).get(0).isEmpty())
-            return "-";
         return "+";
     }
 }

@@ -2,6 +2,7 @@ package com.beta.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedBy;
@@ -69,6 +70,7 @@ public abstract class AbstractAuditingEntity implements Serializable {
     @CreatedDate
     @Column(name = "created_date")
     @JsonIgnore
+    @Builder.Default
     private Instant createdDate = Instant.now();
 
     @Column(name = "last_modified_by")
@@ -79,6 +81,7 @@ public abstract class AbstractAuditingEntity implements Serializable {
     @LastModifiedDate
     @Column(name = "last_modified_date")
     @JsonIgnore
+    @Builder.Default
     private Instant lastModifiedDate = Instant.now();
 
 }

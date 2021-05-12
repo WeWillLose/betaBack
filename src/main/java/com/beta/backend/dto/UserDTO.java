@@ -2,6 +2,7 @@ package com.beta.backend.dto;
 
 import com.beta.backend.model.Role;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -30,6 +31,7 @@ public class UserDTO{
 
     private UserDTO chairman;
 
+    @Builder.Default
     private Set<Role> roles = new HashSet<>();
 
 

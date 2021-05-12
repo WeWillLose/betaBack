@@ -11,6 +11,7 @@ import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.poi.xwpf.usermodel.XWPFTableCell;
 import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Service;
 
@@ -145,15 +146,15 @@ public class ReportDocxServiceImpl implements ReportDocxService {
         replacePlaceholdersInTablesAndFillTableFromData(reportTemplate.getTables(), data,regexp);
         XWPFDocxCommonService.replacePlaceholdersInParagraphsFromData(reportTemplate.getParagraphs(), data,regexp);
     }
-    private InputStreamResource getInputStreamResourceFromXWPFDoc(@NonNull XWPFDocument doc) throws IOException {
+    private ByteArrayResource getInputStreamResourceFromXWPFDoc(@NonNull XWPFDocument doc) throws IOException {
         try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
             doc.write(byteArrayOutputStream);
             byteArrayOutputStream.flush();
-            return new InputStreamResource(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
+            return new ByteArrayResource(byteArrayOutputStream.toByteArray());
         }
     }
     @Override
-    public InputStreamResource getReportDocxInputStreamResourceByReportData(@NonNull JsonNode data){
+    public ByteArrayResource getReportDocxInputStreamResourceByReportData(@NonNull JsonNode data){
         try(FileInputStream fos = new FileInputStream(pathToReportTemplate)) {
             if(fos.available() <=0) throw new FileSystemException("IN getReportDocxInputStreamResourceByReport fos.available() <=0");
             XWPFDocument reportTemplate = new XWPFDocument(fos);

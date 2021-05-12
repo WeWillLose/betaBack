@@ -58,12 +58,15 @@ public class User extends AbstractAuditingEntity implements UserDetails, Seriali
 
     @OneToMany (mappedBy="author", fetch=FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonIgnore
+    @Builder.Default
     private Set<Report> reports = new HashSet<>();
 
     @OneToMany (mappedBy="author", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
+    @Builder.Default
     private Set<ToDo> toDos = new HashSet<>();
 
+    @Builder.Default
     @Column(name = "is_active")
     private Boolean isActive = true;
 
