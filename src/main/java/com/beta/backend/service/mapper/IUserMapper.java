@@ -8,6 +8,8 @@ import java.util.List;
 public interface IUserMapper {
     List<UserDTO> usersToUserDTOs(List<User> users);
 
+    UserDTO userToUserDTOWithToken(User user,String token);
+
     UserDTO userToUserDTO(User user);
 
     List<User> userDTOsToUsers(List<UserDTO> userDTOs);

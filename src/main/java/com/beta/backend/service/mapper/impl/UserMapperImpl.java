@@ -2,6 +2,7 @@ package com.beta.backend.service.mapper.impl;
 
 import com.beta.backend.model.User;
 import com.beta.backend.dto.UserDTO;
+import lombok.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,19 @@ public class UserMapperImpl implements com.beta.backend.service.mapper.IUserMapp
     @Override
     public List<UserDTO> usersToUserDTOs(List<User> users) {
         return users.stream().filter(Objects::nonNull).map(this::userToUserDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public UserDTO userToUserDTOWithToken(User user,@NonNull String token) {
+        return user == null ? null : UserDTO.builder()
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .middleName(user.getMiddleName())
+                .username(user.getUsername())
+                .id(user.getId())
+                .roles(user.getRoles())
+                .token(token)
+                .build();
     }
 
     private UserDTO chairmanToUserDTOs(User user) {

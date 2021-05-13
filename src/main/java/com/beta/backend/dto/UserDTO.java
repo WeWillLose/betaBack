@@ -31,6 +31,8 @@ public class UserDTO{
 
     private UserDTO chairman;
 
+    private String token;
+
     @Builder.Default
     private Set<Role> roles = new HashSet<>();
 

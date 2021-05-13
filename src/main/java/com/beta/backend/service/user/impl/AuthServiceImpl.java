@@ -38,8 +38,8 @@ public class AuthServiceImpl implements com.beta.backend.service.user.AuthServic
     private String AuthorizationHeaderName;
 
     @Override
-    public ResponseEntity<UserDTO> generateAuthResponseEntity(User user, String token) {
-        return ResponseEntity.ok().header(AuthorizationHeaderName,token).body(userMapper.userToUserDTO(user));
+    public UserDTO generateAuthUserDtoWithToken(@NonNull User user, @NonNull String token) {
+        return userMapper.userToUserDTOWithToken(user,token);
     }
 
     @Override
@@ -73,20 +73,5 @@ public class AuthServiceImpl implements com.beta.backend.service.user.AuthServic
                 .isActive(true)
                 .build();
         return userService.createUser(userToSave);
-    }
-
-    @Override
-    public boolean initDb() {
-        Set.of(new Role(ERole.TEACHER),new Role(ERole.ADMIN),new Role(ERole.CHAIRMAN)).forEach(roleRepo::save);
-        User userToSave = User.builder()
-                .username("admin")
-                .password("admin")
-                .lastName("Admin")
-                .firstName("Admin")
-                .middleName("Admin")
-                .roles(Set.of(new Role(ERole.TEACHER),new Role(ERole.ADMIN),new Role(ERole.CHAIRMAN)))
-                .isActive(true)
-                .build();
-        return userService.createUser(userToSave) != null;
     }
 }

@@ -9,12 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 public interface AuthService {
-    ResponseEntity<UserDTO> generateAuthResponseEntity(User user, String token);
+    UserDTO generateAuthUserDtoWithToken(User user, String token);
 
     User authenticateUser(@NonNull LoginDTO loginDTO);
 
     @PreAuthorize("hasRole('ADMIN')")
     User registerUser(@NonNull SignupDTO signUpDTO);
 
-    boolean initDb();
 }

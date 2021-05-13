@@ -26,9 +26,9 @@ public class AuthController {
 
 
     @PostMapping("authenticate")
-    public ResponseEntity<UserDTO> authenticateUser(@Valid @RequestBody LoginDTO loginDTO) {
+    public UserDTO authenticateUser(@Valid @RequestBody LoginDTO loginDTO) {
         User user = authService.authenticateUser(loginDTO);
-        return authService.generateAuthResponseEntity(user,jwtTokenProvider.generateToken(user.getUsername()));
+        return authService.generateAuthUserDtoWithToken(user,jwtTokenProvider.generateToken(user.getUsername()));
     }
 
     @PostMapping("registration")
