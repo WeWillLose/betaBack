@@ -74,6 +74,13 @@ public class ReportController {
         return ResponseEntity.ok().body(followersReports);
     }
 
+    @GetMapping("all")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<ReportDTO>> getAllReports() {
+        List<ReportDTO> reports = reportMapperService.reportToReportDTOsWithoutData(reportService.findAll());
+        return ResponseEntity.ok().body(reports);
+    }
+
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteReportById(@PathVariable Long id) {
         reportService.deleteReport(id);

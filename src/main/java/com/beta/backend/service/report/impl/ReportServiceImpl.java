@@ -97,7 +97,6 @@ public class ReportServiceImpl implements ReportService {
             reports.addAll(findAllByAuthorId(follower.getId()));
         }
         return reports;
-
     }
 
     @Override
