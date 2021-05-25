@@ -163,7 +163,9 @@ public class ReportServiceImpl implements ReportService {
 
         if (report.getReportName() != null && !report.getReportName().isBlank()) {
             if (reportById.getStatus() == EReportStatus.UNCHECKED) {
-                if (reportById.getAuthor().getId().equals(currentUser.getId()) || SecurityUtils.isCurrentUserAdmin()) {
+                if (reportById.getAuthor().getId().equals(currentUser.getId())
+                        || (SecurityUtils.hasCurrentUserThisRole(ROLES.CHAIRMAN) && userService.isUserInChairmanGroup(reportById.getAuthor().getId(), SecurityUtils.getCurrentUser().getId()))
+                        || SecurityUtils.isCurrentUserAdmin()) {
                     reportById.setReportName(report.getReportName());
                 } else
                     throw new ForbiddenExceptionImpl();
@@ -188,7 +190,9 @@ public class ReportServiceImpl implements ReportService {
 
         if (report.getData() != null) {
             if (reportById.getStatus() == EReportStatus.UNCHECKED) {
-                if (reportById.getAuthor().getId().equals(currentUser.getId()) || SecurityUtils.isCurrentUserAdmin()) {
+                if (reportById.getAuthor().getId().equals(currentUser.getId())
+                        || (SecurityUtils.hasCurrentUserThisRole(ROLES.CHAIRMAN) && userService.isUserInChairmanGroup(reportById.getAuthor().getId(), SecurityUtils.getCurrentUser().getId()))
+                        || SecurityUtils.isCurrentUserAdmin()) {
                     reportById.setData(report.getData());
                 } else
                     throw new ForbiddenExceptionImpl();
