@@ -46,7 +46,7 @@ public class SimpleCORSFilter implements Filter {
             rsp.setHeader("Access-Control-Max-Age", "1728000");
             rsp.setStatus(HttpStatus.NO_CONTENT.value());
         } else {
-            rsp.setHeader("Access-Control-Expose-Headers", "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range");
+            rsp.setHeader("Access-Control-Expose-Headers", "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range,Content-Disposition");
         }
         chain.doFilter(rqt, rsp);
 
