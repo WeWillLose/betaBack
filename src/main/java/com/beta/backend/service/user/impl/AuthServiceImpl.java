@@ -1,20 +1,17 @@
 package com.beta.backend.service.user.impl;
 
+import com.beta.backend.dto.LoginDTO;
+import com.beta.backend.dto.SignupDTO;
 import com.beta.backend.dto.UserDTO;
+import com.beta.backend.exception.impl.UserNotFoundExceptionImpl;
 import com.beta.backend.model.ERole;
 import com.beta.backend.model.Role;
 import com.beta.backend.model.User;
-import com.beta.backend.repo.RoleRepo;
-import com.beta.backend.dto.LoginDTO;
-import com.beta.backend.dto.SignupDTO;
-import com.beta.backend.exception.impl.UserNotFoundExceptionImpl;
 import com.beta.backend.service.mapper.IUserMapper;
 import com.beta.backend.service.user.UserService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,7 +21,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -32,10 +28,7 @@ import java.util.Set;
 public class AuthServiceImpl implements com.beta.backend.service.user.AuthService {
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
-    private final RoleRepo roleRepo;
     private final IUserMapper userMapper;
-    @Value("${jwt.AuthorizationHeaderName}")
-    private String AuthorizationHeaderName;
 
     @Override
     public UserDTO generateAuthUserDtoWithToken(@NonNull User user, @NonNull String token) {

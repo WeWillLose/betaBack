@@ -4,7 +4,6 @@ import com.beta.backend.exception.handler.AccessDeniedExceptionImpl;
 import com.beta.backend.security.filter.JwtTokenFilter;
 import com.beta.backend.security.filter.SimpleCORSFilter;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.Session;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -31,9 +30,6 @@ import org.springframework.security.web.session.SessionManagementFilter;
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
-
-    private final AuditorAwareImpl auditorAware;
-
     private final JwtTokenFilter jwtTokenFilter;
     private final SimpleCORSFilter simpleCORSFilter;
 

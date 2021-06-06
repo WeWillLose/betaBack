@@ -1,16 +1,15 @@
 package com.beta.backend.controller;
 
 
-import com.beta.backend.model.User;
 import com.beta.backend.dto.InputStreamResourceDTO;
 import com.beta.backend.dto.ReportDTO;
 import com.beta.backend.dto.ReportStatusDTO;
+import com.beta.backend.model.User;
 import com.beta.backend.service.mapper.IReportMapper;
 import com.beta.backend.service.report.ReportService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -20,7 +19,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -42,7 +40,7 @@ public class ReportController {
     }
 
     @GetMapping("docx/{id:\\d+}")
-    public ResponseEntity<ByteArrayResource> getReportDocx(@PathVariable Long id) throws IOException {
+    public ResponseEntity<ByteArrayResource> getReportDocx(@PathVariable Long id){
         InputStreamResourceDTO inputStreamResource = reportService.generateReportDocx(id);
         HttpHeaders headers = new HttpHeaders();
         ContentDisposition contentDisposition = ContentDisposition.builder("attachment")

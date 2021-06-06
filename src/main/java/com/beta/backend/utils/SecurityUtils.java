@@ -9,12 +9,8 @@ import com.beta.backend.service.user.UserService;
 import lombok.NonNull;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 public class SecurityUtils {
@@ -50,35 +46,39 @@ public class SecurityUtils {
     public static boolean isAdmin(User user) {
         return user != null && user.getRoles().contains(ROLES.ADMIN);
     }
+
     public static boolean isChairman(User user) {
         return user != null && user.getRoles().contains(ROLES.CHAIRMAN);
     }
+
     public static boolean isCurrentUserAdmin() {
         return hasCurrentUserThisRole(ROLES.ADMIN);
     }
+
     public static boolean isCurrentUserChairman() {
         return hasCurrentUserThisRole(ROLES.CHAIRMAN);
     }
+
     public static User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        return authentication != null && !authentication.getPrincipal().equals("anonymousUser")? (User) authentication.getPrincipal() :null;
+        return authentication != null && !authentication.getPrincipal().equals("anonymousUser") ? (User) authentication.getPrincipal() : null;
     }
 
-    public boolean isCurrentUserCanEditReportIfIsOwnerAndReportStatusUNCHECKEDOrIsOwnerChairmanOrAdmin(@NonNull Report report){
-        if(isCurrentUserAdmin())  return true;
-        if(report.getAuthor() == null) return false;
-        if(getCurrentUser() ==null) return false;
-        if(isCurrentUserChairman() &&
-            userService.isUserInChairmanGroup(report.getAuthor().getId(),getCurrentUser().getId())){
+    public boolean isCurrentUserCanEditReportIfIsOwnerAndReportStatusUNCHECKEDOrIsOwnerChairmanOrAdmin(@NonNull Report report) {
+        if (isCurrentUserAdmin()) return true;
+        if (report.getAuthor() == null) return false;
+        if (getCurrentUser() == null) return false;
+        if (isCurrentUserChairman() &&
+                userService.isUserInChairmanGroup(report.getAuthor().getId(), getCurrentUser().getId())) {
             return true;
         }
         return report.getStatus() == EReportStatus.UNCHECKED && report.getAuthor().getId().equals(SecurityUtils.getCurrentUser().getId());
     }
 
     public static boolean isCurrentUserEqualsUserOrAdmin(User user) {
-        if(hasCurrentUserThisRole(ROLES.ADMIN)) return true;
-        if(user ==null) return false;
+        if (hasCurrentUserThisRole(ROLES.ADMIN)) return true;
+        if (user == null) return false;
         User currUser = getCurrentUser();
         return currUser != null && currUser.getId().equals(user.getId());
     }

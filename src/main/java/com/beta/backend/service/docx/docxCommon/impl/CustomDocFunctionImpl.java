@@ -33,22 +33,20 @@ public class CustomDocFunctionImpl implements CustomDocFunction {
 
     private List<String> getArgs(String expression,String prefix,String argsSeparator){
         if(expression == null || expression.isBlank() || prefix ==null || argsSeparator == null){
-            return new ArrayList<String>();
+            return new ArrayList<>();
         }
         return Arrays.stream(expression.replace(prefix, "").replace("(", "").replace(")", "").split(argsSeparator)).collect(Collectors.toList());
     }
 
     private List<String> splitArgBySeparatorAndDeleteBlackOrEmptyValue(String arg,String argSeparator){
         if(arg == null || arg.isBlank() || argSeparator ==null ){
-            return new ArrayList<String>();
+            return new ArrayList<>();
         }
         return Arrays.stream(arg.split(tableFiledSeparator)).filter(t->t!=null&&!t.isBlank()).collect(Collectors.toList());
     }
 
     private boolean isSmth(JsonNode value){
-        if(value ==null || value.isEmpty()) return false;
-        if(value.asText().isBlank()) return false;
-        return true;
+        return value != null && !value.asText().isBlank();
     }
 
     @Override
@@ -101,7 +99,7 @@ public class CustomDocFunctionImpl implements CustomDocFunction {
 
         boolean res = true;
         for(String arg : args){
-            tableFieldName = splitArgBySeparatorAndDeleteBlackOrEmptyValue(arg,tableFiledSeparator);;
+            tableFieldName = splitArgBySeparatorAndDeleteBlackOrEmptyValue(arg,tableFiledSeparator);
             if(tableFieldName.size() >=3 || tableFieldName.size()<=0){
                 throw new RuntimeException(String.format("IN isSmthByExpressionFromData tableFieldName.length is %s",tableFieldName.size()));
             }

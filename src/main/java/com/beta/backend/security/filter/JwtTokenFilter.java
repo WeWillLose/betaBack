@@ -1,13 +1,8 @@
 package com.beta.backend.security.filter;
 
 
-import com.beta.backend.dto.ErrorResponseDTO;
-import com.beta.backend.exception.AbstractCustomException;
-import com.beta.backend.exception.impl.JwtExceptionImpl;
 import com.beta.backend.security.jwt.JwtTokenProvider;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;

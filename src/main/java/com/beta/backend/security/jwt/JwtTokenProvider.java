@@ -1,6 +1,5 @@
 package com.beta.backend.security.jwt;
 
-import com.beta.backend.exception.impl.JwtExceptionImpl;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

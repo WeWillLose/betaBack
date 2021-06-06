@@ -1,15 +1,15 @@
 package com.beta.backend.service.report.impl;
 
-import com.beta.backend.env.ROLES;
-import com.beta.backend.model.EReportStatus;
-import com.beta.backend.model.Report;
-import com.beta.backend.model.User;
-import com.beta.backend.repo.ReportRepo;
 import com.beta.backend.dto.InputStreamResourceDTO;
+import com.beta.backend.env.ROLES;
 import com.beta.backend.exception.impl.ForbiddenExceptionImpl;
 import com.beta.backend.exception.impl.ReportNotFoundExceptionImpl;
 import com.beta.backend.exception.impl.UserNotFoundExceptionImpl;
 import com.beta.backend.exception.impl.ValidationExceptionImpl;
+import com.beta.backend.model.EReportStatus;
+import com.beta.backend.model.Report;
+import com.beta.backend.model.User;
+import com.beta.backend.repo.ReportRepo;
 import com.beta.backend.service.docx.report.ReportDocxService;
 import com.beta.backend.service.report.ReportService;
 import com.beta.backend.service.report.ReportValidationService;
@@ -41,23 +41,20 @@ public class ReportServiceImpl implements ReportService {
 
     private final ReportValidationService reportValidationService;
 
-    private final SecurityUtils securityUtils;
-
     public ReportServiceImpl(ReportRepo reportRepo, @Lazy UserService userService,
                              @Lazy ReportDocxService reportDocxService,
-                             ReportValidationService reportValidationService, SecurityUtils securityUtils) {
+                             ReportValidationService reportValidationService) {
         this.reportRepo = reportRepo;
         this.userService = userService;
         this.reportDocxService = reportDocxService;
         this.reportValidationService = reportValidationService;
-        this.securityUtils = securityUtils;
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<Report> findByReportId(long reportId) {
         Optional<Report> byId = reportRepo.findById(reportId);
-        log.info("find {} by {}", byId.get(), reportId);
+        log.info("find {} by {}", byId.orElse(null), reportId);
         return byId;
     }
 
@@ -207,7 +204,7 @@ public class ReportServiceImpl implements ReportService {
             }
         }
         User author = reportById.getAuthor();
-        if (author!=null && author.getChairman() != null &&  reportById.getData() !=null && reportById.getData().get("META") !=null && reportById.getData().get("META").get("chairmanFIO") == null) {
+        if (author != null && author.getChairman() != null && reportById.getData() != null && reportById.getData().get("META") != null && reportById.getData().get("META").get("chairmanFIO") == null) {
             ((ObjectNode) reportById.getData().get("META")).put("chairmanFIO",
                     UserUtils.getShortFioFromUser(author)
             );
