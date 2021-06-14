@@ -118,7 +118,13 @@ public class UserServiceImpl implements com.beta.backend.service.user.UserServic
         if (SecurityUtils.isAdmin(user)) {
             throw new ValidationExceptionImpl("Админа нельзя удалить");
         }
-
+        int size = findFollowersByChairmanId(user.getId()).size();
+        if(size >0 ){
+            throw new ValidationExceptionImpl(String.format(
+                    "Пользователь является председателем для %s учителей",
+                    size
+            ));
+        }
         userRepo.delete(user);
         log.info("In delete - user wos deleted by user {}", user);
     }
