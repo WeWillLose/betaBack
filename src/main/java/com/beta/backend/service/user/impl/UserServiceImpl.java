@@ -203,6 +203,16 @@ public class UserServiceImpl implements com.beta.backend.service.user.UserServic
         if (user.getRoles().contains(ROLES.ADMIN)) {
             throw new ValidationExceptionImpl("Нельзя изменять роли админа");
         }
+
+        if(!roles.contains(ROLES.CHAIRMAN) && SecurityUtils.isChairman(user) ){
+            int size = findFollowersByChairmanId(user.getId()).size();
+            if(size > 0 ){
+                throw new ValidationExceptionImpl(String.format(
+                        "Пользователь является председателем для %s учителей",
+                        size
+                ));
+            }
+        }
         user.setRoles(roles.stream().filter(Objects::nonNull).collect(Collectors.toSet()));
         return userRepo.save(user);
     }
