@@ -1,10 +1,10 @@
 package com.beta.backend.service.user;
 
-import com.beta.backend.model.Role;
-import com.beta.backend.model.User;
-import com.beta.backend.exception.impl.ForbiddenExceptionImpl;
-import com.beta.backend.exception.impl.UserNotFoundExceptionImpl;
-import com.beta.backend.exception.impl.ValidationExceptionImpl;
+import com.beta.backend.domain.model.Role;
+import com.beta.backend.domain.model.User;
+import com.beta.backend.domain.exception.impl.ForbiddenExceptionImpl;
+import com.beta.backend.domain.exception.impl.UserNotFoundExceptionImpl;
+import com.beta.backend.domain.exception.impl.ValidationExceptionImpl;
 import lombok.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,7 +1,7 @@
 package com.beta.backend.controller;
 
 
-import com.beta.backend.dto.InputStreamResourceDTO;
+import com.beta.backend.domain.dto.InputStreamResourceDTO;
 import com.beta.backend.service.scoreList.ScoreListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ContentDisposition;

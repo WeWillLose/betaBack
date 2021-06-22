@@ -1,11 +1,10 @@
 package com.beta.backend.service.user;
 
-import com.beta.backend.dto.UserDTO;
-import com.beta.backend.model.User;
-import com.beta.backend.dto.LoginDTO;
-import com.beta.backend.dto.SignupDTO;
+import com.beta.backend.domain.dto.UserDTO;
+import com.beta.backend.domain.model.User;
+import com.beta.backend.domain.dto.LoginDTO;
+import com.beta.backend.domain.dto.SignupDTO;
 import lombok.NonNull;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 public interface AuthService {

@@ -37,5 +37,5 @@ doc:
 jwt:
   AuthorizationHeaderName: Authorization
   token:
-    secret: nEx_;d2tx{u/z6uUozr?**@sl-|d9_
+    secret: ${SecretKey:nEx_;d2tx{u/z6uUozr?**@sl-|d9_}
     expDay: 3

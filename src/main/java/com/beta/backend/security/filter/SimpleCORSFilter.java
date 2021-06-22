@@ -27,6 +27,7 @@ public class SimpleCORSFilter implements Filter {
         rsp.setHeader("Access-Control-Allow-Origin", "*");
         rsp.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
         rsp.addHeader("Access-Control-Allow-Headers", "*");
+
         if (rqt.getMethod().equals(HttpMethod.OPTIONS.name())) {
             rsp.setHeader("Access-Control-Max-Age", "1728000");
             rsp.setStatus(HttpStatus.NO_CONTENT.value());

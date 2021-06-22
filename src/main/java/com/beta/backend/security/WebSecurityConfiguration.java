@@ -1,6 +1,6 @@
 package com.beta.backend.security;
 
-import com.beta.backend.exception.handler.AccessDeniedExceptionImpl;
+import com.beta.backend.domain.exception.handler.AccessDeniedExceptionImpl;
 import com.beta.backend.security.filter.JwtTokenFilter;
 import com.beta.backend.security.filter.SimpleCORSFilter;
 import lombok.RequiredArgsConstructor;

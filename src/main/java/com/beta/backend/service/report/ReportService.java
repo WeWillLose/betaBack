@@ -1,8 +1,8 @@
 package com.beta.backend.service.report;
 
-import com.beta.backend.model.EReportStatus;
-import com.beta.backend.model.Report;
-import com.beta.backend.dto.InputStreamResourceDTO;
+import com.beta.backend.domain.model.EReportStatus;
+import com.beta.backend.domain.model.Report;
+import com.beta.backend.domain.dto.InputStreamResourceDTO;
 import lombok.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,12 +1,12 @@
 package com.beta.backend.service.toDo.impl;
 
 
-import com.beta.backend.model.ToDo;
-import com.beta.backend.model.User;
+import com.beta.backend.domain.model.ToDo;
+import com.beta.backend.domain.model.User;
 import com.beta.backend.repo.ToDoRepo;
-import com.beta.backend.exception.impl.ForbiddenExceptionImpl;
-import com.beta.backend.exception.impl.ToDoNotFoundExceptionImpl;
-import com.beta.backend.exception.impl.UserNotFoundExceptionImpl;
+import com.beta.backend.domain.exception.impl.ForbiddenExceptionImpl;
+import com.beta.backend.domain.exception.impl.ToDoNotFoundExceptionImpl;
+import com.beta.backend.domain.exception.impl.UserNotFoundExceptionImpl;
 import com.beta.backend.service.toDo.ToDoService;
 import com.beta.backend.service.user.UserService;
 import com.beta.backend.utils.SecurityUtils;

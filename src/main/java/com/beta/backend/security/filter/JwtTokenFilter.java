@@ -1,7 +1,7 @@
 package com.beta.backend.security.filter;
 
 
-import com.beta.backend.security.jwt.JwtTokenProvider;
+import com.beta.backend.service.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

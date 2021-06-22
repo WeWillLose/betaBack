@@ -1,6 +1,6 @@
 package com.beta.backend.repo;
 
-import com.beta.backend.model.Report;
+import com.beta.backend.domain.model.Report;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,8 +1,8 @@
 package com.beta.backend.service.scoreList.impl;
 
-import com.beta.backend.model.Report;
-import com.beta.backend.dto.InputStreamResourceDTO;
-import com.beta.backend.exception.impl.ReportNotFoundExceptionImpl;
+import com.beta.backend.domain.model.Report;
+import com.beta.backend.domain.dto.InputStreamResourceDTO;
+import com.beta.backend.domain.exception.impl.ReportNotFoundExceptionImpl;
 import com.beta.backend.service.docx.scoreList.ScoreListDocxService;
 import com.beta.backend.service.report.ReportService;
 import com.beta.backend.service.scoreList.ScoreListService;

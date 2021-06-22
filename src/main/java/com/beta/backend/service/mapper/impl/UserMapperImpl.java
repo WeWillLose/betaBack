@@ -1,7 +1,8 @@
 package com.beta.backend.service.mapper.impl;
 
-import com.beta.backend.model.User;
-import com.beta.backend.dto.UserDTO;
+import com.beta.backend.domain.model.User;
+import com.beta.backend.domain.dto.UserDTO;
+import com.beta.backend.service.mapper.UserMapper;
 import lombok.NonNull;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
-public class UserMapperImpl implements com.beta.backend.service.mapper.IUserMapper {
+public class UserMapperImpl implements UserMapper {
 
     @Override
     public List<UserDTO> usersToUserDTOs(List<User> users) {

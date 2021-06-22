@@ -104,7 +104,7 @@ public class ComputedValuesServiceImpl implements ComputedValuesService {
         if(data == null || data.isEmpty()){
             return "-";
         }
-        if(data.get(0) == null || data.get(0).isEmpty()){
+        if(data.get(0) == null || data.get(0).asText().isBlank()){
             return "-";
         }
         return "+";

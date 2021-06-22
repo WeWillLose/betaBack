@@ -1,6 +1,6 @@
 package com.beta.backend.utils;
 
-import com.beta.backend.model.User;
+import com.beta.backend.domain.model.User;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Nullable;

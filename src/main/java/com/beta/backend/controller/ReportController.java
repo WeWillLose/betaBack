@@ -1,11 +1,11 @@
 package com.beta.backend.controller;
 
 
-import com.beta.backend.dto.InputStreamResourceDTO;
-import com.beta.backend.dto.ReportDTO;
-import com.beta.backend.dto.ReportStatusDTO;
-import com.beta.backend.model.User;
-import com.beta.backend.service.mapper.IReportMapper;
+import com.beta.backend.domain.dto.InputStreamResourceDTO;
+import com.beta.backend.domain.dto.ReportDTO;
+import com.beta.backend.domain.dto.ReportStatusDTO;
+import com.beta.backend.domain.model.User;
+import com.beta.backend.service.mapper.ReportMapper;
 import com.beta.backend.service.report.ReportService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class ReportController {
 
     private final ReportService reportService;
 
-    private final IReportMapper reportMapperService;
+    private final ReportMapper reportMapperService;
 
     @PostMapping("")
     public ResponseEntity<ReportDTO> saveReport(@RequestBody ReportDTO report, @AuthenticationPrincipal User user) {

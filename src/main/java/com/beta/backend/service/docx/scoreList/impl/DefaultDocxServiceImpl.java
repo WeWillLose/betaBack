@@ -1,7 +1,7 @@
 package com.beta.backend.service.docx.scoreList.impl;
 
 
-import com.beta.backend.model.Report;
+import com.beta.backend.domain.model.Report;
 import com.beta.backend.service.docx.docxCommon.XWPFDocxCommonService;
 import com.beta.backend.service.docx.scoreList.ScoreListDocxService;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -36,8 +36,6 @@ public class DefaultDocxServiceImpl implements ScoreListDocxService {
     private final XWPFDocxCommonService xwpfDocxCommonService;
 
     private final ComputedValuesServiceImpl computedValuesService;
-
-
 
     private ByteArrayResource getInputStream(@NonNull  XWPFDocument docx) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

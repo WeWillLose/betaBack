@@ -1,11 +1,11 @@
 package com.beta.backend.controller;
 
-import com.beta.backend.dto.LoginDTO;
-import com.beta.backend.dto.SignupDTO;
-import com.beta.backend.dto.UserDTO;
-import com.beta.backend.model.User;
-import com.beta.backend.security.jwt.JwtTokenProvider;
-import com.beta.backend.service.mapper.IUserMapper;
+import com.beta.backend.domain.dto.LoginDTO;
+import com.beta.backend.domain.dto.SignupDTO;
+import com.beta.backend.domain.dto.UserDTO;
+import com.beta.backend.domain.model.User;
+import com.beta.backend.service.jwt.JwtTokenProvider;
+import com.beta.backend.service.mapper.UserMapper;
 import com.beta.backend.service.user.AuthService;
 import com.beta.backend.utils.SecurityUtils;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import javax.validation.Valid;
 @Slf4j
 public class AuthController {
     private final AuthService authService;
-    private final IUserMapper userMapper;
+    private final UserMapper userMapper;
     private final JwtTokenProvider jwtTokenProvider;
 
 

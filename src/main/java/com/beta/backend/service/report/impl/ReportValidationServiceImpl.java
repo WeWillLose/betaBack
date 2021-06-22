@@ -1,7 +1,7 @@
 package com.beta.backend.service.report.impl;
 
 
-import com.beta.backend.model.Report;
+import com.beta.backend.domain.model.Report;
 import com.beta.backend.service.report.ReportValidationService;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
 package com.beta.backend.service.report;
 
 
-import com.beta.backend.model.Report;
+import com.beta.backend.domain.model.Report;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.util.List;

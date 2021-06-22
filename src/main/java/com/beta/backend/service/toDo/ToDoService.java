@@ -1,7 +1,7 @@
 package com.beta.backend.service.toDo;
 
 
-import com.beta.backend.model.ToDo;
+import com.beta.backend.domain.model.ToDo;
 
 import java.util.List;
 

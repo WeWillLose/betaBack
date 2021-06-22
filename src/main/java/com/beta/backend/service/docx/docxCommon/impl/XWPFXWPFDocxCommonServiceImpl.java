@@ -48,7 +48,7 @@ public class XWPFXWPFDocxCommonServiceImpl implements XWPFDocxCommonService {
             log.warn("IN deletePlaceholdersByColor xwpfTableCell is null");
             return;
         }
-        if(colorToDelete==null || colorToDelete.isBlank()){
+        if(colorToDelete == null || colorToDelete.isBlank()){
             log.warn("IN deletePlaceholdersByColor colorToDelete is null or blank");
         }
         String color;
@@ -70,7 +70,7 @@ public class XWPFXWPFDocxCommonServiceImpl implements XWPFDocxCommonService {
         Pattern pattern = Pattern.compile(regexp);
         String placeholder;
         String valueInPlaceholder;
-        JsonNode valueFromData = null;
+        JsonNode valueFromData;
         String text;
 
         for (XWPFParagraph p : paragraphs) {

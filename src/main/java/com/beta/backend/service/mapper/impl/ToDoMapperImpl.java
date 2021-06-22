@@ -1,9 +1,9 @@
 package com.beta.backend.service.mapper.impl;
 
-import com.beta.backend.model.ToDo;
-import com.beta.backend.dto.ToDoDTO;
-import com.beta.backend.service.mapper.IToDoMapper;
-import com.beta.backend.service.mapper.IUserMapper;
+import com.beta.backend.domain.model.ToDo;
+import com.beta.backend.domain.dto.ToDoDTO;
+import com.beta.backend.service.mapper.ToDoMapper;
+import com.beta.backend.service.mapper.UserMapper;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ToDoMapperImpl implements IToDoMapper {
-    private final IUserMapper userMapper;
+public class ToDoMapperImpl implements ToDoMapper {
+    private final UserMapper userMapper;
 
-    public ToDoMapperImpl(@Lazy IUserMapper userMapper) {
+    public ToDoMapperImpl(@Lazy UserMapper userMapper) {
         this.userMapper = userMapper;
     }
 

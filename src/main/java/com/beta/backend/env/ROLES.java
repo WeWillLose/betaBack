@@ -1,7 +1,7 @@
 package com.beta.backend.env;
 
-import com.beta.backend.model.ERole;
-import com.beta.backend.model.Role;
+import com.beta.backend.domain.model.ERole;
+import com.beta.backend.domain.model.Role;
 
 public final class ROLES {
     private ROLES(){}

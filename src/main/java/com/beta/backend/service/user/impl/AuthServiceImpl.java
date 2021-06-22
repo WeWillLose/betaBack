@@ -1,13 +1,13 @@
 package com.beta.backend.service.user.impl;
 
-import com.beta.backend.dto.LoginDTO;
-import com.beta.backend.dto.SignupDTO;
-import com.beta.backend.dto.UserDTO;
-import com.beta.backend.exception.impl.UserNotFoundExceptionImpl;
-import com.beta.backend.model.ERole;
-import com.beta.backend.model.Role;
-import com.beta.backend.model.User;
-import com.beta.backend.service.mapper.IUserMapper;
+import com.beta.backend.domain.dto.LoginDTO;
+import com.beta.backend.domain.dto.SignupDTO;
+import com.beta.backend.domain.dto.UserDTO;
+import com.beta.backend.domain.exception.impl.UserNotFoundExceptionImpl;
+import com.beta.backend.domain.model.ERole;
+import com.beta.backend.domain.model.Role;
+import com.beta.backend.domain.model.User;
+import com.beta.backend.service.mapper.UserMapper;
 import com.beta.backend.service.user.UserService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +28,7 @@ import java.util.Collections;
 public class AuthServiceImpl implements com.beta.backend.service.user.AuthService {
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
-    private final IUserMapper userMapper;
+    private final UserMapper userMapper;
 
     @Override
     public UserDTO generateAuthUserDtoWithToken(@NonNull User user, @NonNull String token) {

@@ -1,9 +1,9 @@
 package com.beta.backend.service.mapper.impl;
 
-import com.beta.backend.model.Report;
-import com.beta.backend.dto.ReportDTO;
-import com.beta.backend.service.mapper.IReportMapper;
-import com.beta.backend.service.mapper.IUserMapper;
+import com.beta.backend.domain.model.Report;
+import com.beta.backend.domain.dto.ReportDTO;
+import com.beta.backend.service.mapper.ReportMapper;
+import com.beta.backend.service.mapper.UserMapper;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ReportMapperImpl implements IReportMapper {
-    private final IUserMapper userMapper;
+public class ReportMapperImpl implements ReportMapper {
+    private final UserMapper userMapper;
 
-    public ReportMapperImpl(@Lazy IUserMapper userMapper) {
+    public ReportMapperImpl(@Lazy UserMapper userMapper) {
         this.userMapper = userMapper;
     }
 

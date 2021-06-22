@@ -1,9 +1,9 @@
 package com.beta.backend.controller;
 
-import com.beta.backend.dto.PasswordResetDTO;
-import com.beta.backend.dto.RoleDTO;
-import com.beta.backend.dto.UserDTO;
-import com.beta.backend.service.mapper.IUserMapper;
+import com.beta.backend.domain.dto.PasswordResetDTO;
+import com.beta.backend.domain.dto.RoleDTO;
+import com.beta.backend.domain.dto.UserDTO;
+import com.beta.backend.service.mapper.UserMapper;
 import com.beta.backend.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-    private final IUserMapper userMapper;
+    private final UserMapper userMapper;
 
     @GetMapping("info/{id:\\d}")
     public ResponseEntity<UserDTO> getUserInfo(@PathVariable(name = "id") Long id) {

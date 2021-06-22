@@ -1,9 +1,9 @@
 package com.beta.backend.controller;
 
 
-import com.beta.backend.model.User;
-import com.beta.backend.dto.ToDoDTO;
-import com.beta.backend.service.mapper.IToDoMapper;
+import com.beta.backend.domain.model.User;
+import com.beta.backend.domain.dto.ToDoDTO;
+import com.beta.backend.service.mapper.ToDoMapper;
 import com.beta.backend.service.toDo.ToDoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ public class ToDoController {
     private final ToDoService toDoService;
 
 
-    private final IToDoMapper toDoMapperService;
+    private final ToDoMapper toDoMapperService;
 
     @GetMapping("author/{id}")
     public ResponseEntity<?> getToDos(@PathVariable(name = "id") Long id){

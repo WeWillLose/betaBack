@@ -1,7 +1,7 @@
 package com.beta.backend.repo;
 
-import com.beta.backend.model.ERole;
-import com.beta.backend.model.Role;
+import com.beta.backend.domain.model.ERole;
+import com.beta.backend.domain.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

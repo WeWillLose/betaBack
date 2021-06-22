@@ -1,27 +1,14 @@
 package com.beta.backend.utils;
 
+import com.beta.backend.domain.model.Role;
+import com.beta.backend.domain.model.User;
 import com.beta.backend.env.ROLES;
-import com.beta.backend.model.EReportStatus;
-import com.beta.backend.model.Report;
-import com.beta.backend.model.Role;
-import com.beta.backend.model.User;
-import com.beta.backend.service.user.UserService;
-import lombok.NonNull;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SecurityUtils {
-
-    private final UserService userService;
-
-    private SecurityUtils(@Lazy UserService userService) {
-        this.userService = userService;
-    }
-
-
     /**
      * Check if a user is authenticated.
      *
@@ -63,17 +50,6 @@ public class SecurityUtils {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         return authentication != null && !authentication.getPrincipal().equals("anonymousUser") ? (User) authentication.getPrincipal() : null;
-    }
-
-    public boolean isCurrentUserCanEditReportIfIsOwnerAndReportStatusUNCHECKEDOrIsOwnerChairmanOrAdmin(@NonNull Report report) {
-        if (isCurrentUserAdmin()) return true;
-        if (report.getAuthor() == null) return false;
-        if (getCurrentUser() == null) return false;
-        if (isCurrentUserChairman() &&
-                userService.isUserInChairmanGroup(report.getAuthor().getId(), getCurrentUser().getId())) {
-            return true;
-        }
-        return report.getStatus() == EReportStatus.UNCHECKED && report.getAuthor().getId().equals(SecurityUtils.getCurrentUser().getId());
     }
 
     public static boolean isCurrentUserEqualsUserOrAdmin(User user) {

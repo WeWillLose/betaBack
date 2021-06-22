@@ -1,10 +1,10 @@
 package com.beta.backend.service.user.impl;
 
 import com.beta.backend.env.ROLES;
-import com.beta.backend.model.Role;
-import com.beta.backend.model.User;
+import com.beta.backend.domain.model.Role;
+import com.beta.backend.domain.model.User;
 import com.beta.backend.repo.UserRepo;
-import com.beta.backend.exception.impl.*;
+import com.beta.backend.domain.exception.impl.*;
 import com.beta.backend.service.user.UserValidationService;
 import com.beta.backend.utils.SecurityUtils;
 import lombok.NonNull;
