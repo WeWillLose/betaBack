@@ -206,7 +206,7 @@ public class ReportServiceImpl implements ReportService {
         User author = reportById.getAuthor();
         if (author != null && author.getChairman() != null && reportById.getData() != null && reportById.getData().get("META") != null && reportById.getData().get("META").get("chairmanFIO") == null) {
             ((ObjectNode) reportById.getData().get("META")).put("chairmanFIO",
-                    UserUtils.getShortFioFromUser(author)
+                    UserUtils.getShortFioFromUser(author.getChairman())
             );
         }
 
