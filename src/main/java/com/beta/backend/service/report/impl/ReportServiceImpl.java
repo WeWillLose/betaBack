@@ -114,7 +114,7 @@ public class ReportServiceImpl implements ReportService {
         report.setReportName(FileNameUtils.generateRandomNameIfEmpty(report.getReportName()));
         if (author.getChairman() != null && report.getData().get("META").get("chairmanFIO") == null) {
             ((ObjectNode) report.getData().get("META")).put("chairmanFIO",
-                    UserUtils.getShortFioFromUser(author)
+                    UserUtils.getShortFioFromUser(author.getChairman())
             );
         }
 
