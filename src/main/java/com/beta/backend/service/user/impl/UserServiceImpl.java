@@ -104,6 +104,24 @@ public class UserServiceImpl implements com.beta.backend.service.user.UserServic
         if (existsByUsername(user.getUsername())) {
             throw new UsernameAlreadyTaken(user.getUsername());
         }
+        if (!userValidationService.validateUserUsername(user.getUsername())) {
+            throw new ValidationExceptionImpl("username не прошел валидацию");
+        }
+        if (!userValidationService.validateUserPassword(user.getPassword())) {
+            throw new ValidationExceptionImpl("password не прошел валидацию");
+        }
+
+        if (!userValidationService.validateUserFirstName(user.getFirstName())) {
+            throw new ValidationExceptionImpl("Имя не прошло валидацию");
+        }
+
+        if (!userValidationService.validateUserLastName(user.getLastName())) {
+            throw new ValidationExceptionImpl("Фамилия не прошло валидацию");
+        }
+
+        if (!userValidationService.validateUserPatronymic(user.getMiddleName())) {
+            throw new ValidationExceptionImpl("Отчество не прошло валидацию");
+        }
         user.setPassword(encoder.encode(user.getPassword()));
         return userRepo.save(user);
     }
@@ -118,9 +136,9 @@ public class UserServiceImpl implements com.beta.backend.service.user.UserServic
         if (SecurityUtils.isAdmin(user)) {
             throw new ValidationExceptionImpl("Админа нельзя удалить");
         }
-        if(SecurityUtils.isChairman(user)){
+        if (SecurityUtils.isChairman(user)) {
             int size = findFollowersByChairmanId(user.getId()).size();
-            if(size > 0 ){
+            if (size > 0) {
                 throw new ValidationExceptionImpl(String.format(
                         "Пользователь является председателем для %s учителей",
                         size
@@ -204,9 +222,9 @@ public class UserServiceImpl implements com.beta.backend.service.user.UserServic
             throw new ValidationExceptionImpl("Нельзя изменять роли админа");
         }
 
-        if(!roles.contains(ROLES.CHAIRMAN) && SecurityUtils.isChairman(user) ){
+        if (!roles.contains(ROLES.CHAIRMAN) && SecurityUtils.isChairman(user)) {
             int size = findFollowersByChairmanId(user.getId()).size();
-            if(size > 0 ){
+            if (size > 0) {
                 throw new ValidationExceptionImpl(String.format(
                         "Пользователь является председателем для %s учителей",
                         size
@@ -247,7 +265,7 @@ public class UserServiceImpl implements com.beta.backend.service.user.UserServic
     @Transactional(readOnly = true)
     public boolean isUserInChairmanGroup(long userId, long chairmanId) {
         User user = findById(userId).orElse(null);
-        if(user == null) throw new UserNotFoundExceptionImpl(userId);
+        if (user == null) throw new UserNotFoundExceptionImpl(userId);
         return findFollowersByChairmanId(chairmanId).contains(user);
     }
 }

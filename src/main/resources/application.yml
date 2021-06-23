@@ -10,8 +10,8 @@ spring:
   flyway:
     enabled: true
   jpa:
-    show-sql: true
-    generate-ddl: true
+    show-sql: false
+    generate-ddl: false
     hibernate:
       ddl-auto: validate
 doc:
