@@ -77,7 +77,8 @@ public class JwtTokenProvider {
 
         } catch (MalformedJwtException mjEx) {
             log.info("Malformed jwt, {}", token);
-
+        }catch (Exception err) {
+            log.info("Exception jwt, {}, Message: {}", token,err.getMessage());
         }
         return false;
     }
